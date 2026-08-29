@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Antzen &amp; Irene, Okinawa</title>
+<title>Irene &amp; Antzen, Okinawa</title>
 <meta name="description" content="Wedding day details for guests — schedule, what to bring, and weather to expect in Onna, Okinawa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ocean-deep:#123B4A;
-    --reef:#2F8F91;
-    --coral:#E8785C;
-    --coral-soft:#F2A98F;
+    --ocean-deep:#3B362E;
+    --reef:#6F8683;
+    --coral:#B98A54;
+    --coral-soft:#D9C2A0;
     --sand:#F4EEE2;
     --foam:#FFFDF9;
-    --ink:#16262B;
-    --ink-soft:#4A5D62;
-    --line:rgba(18,59,74,0.14);
+    --ink:#2A2420;
+    --ink-soft:#6B6259;
+    --line:rgba(42,36,32,0.14);
     --bg:var(--sand);
     --surface:var(--foam);
     --text:var(--ink);
@@ -26,18 +26,18 @@
     --accent:var(--reef);
     --accent-2:var(--coral);
     --border:var(--line);
-    --shadow: 0 1px 2px rgba(18,59,74,0.06), 0 8px 24px rgba(18,59,74,0.06);
+    --shadow: 0 1px 2px rgba(42,36,32,0.06), 0 8px 24px rgba(42,36,32,0.06);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0B1E24; --surface:#122E36; --text:#EEF3F1; --text-soft:#A9C0C2;
-      --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+      --bg:#1E1A16; --surface:#2A2520; --text:#F2ECE2; --text-soft:#C7BBAC;
+      --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0B1E24; --surface:#122E36; --text:#EEF3F1; --text-soft:#A9C0C2;
-    --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+    --bg:#1E1A16; --surface:#2A2520; --text:#F2ECE2; --text-soft:#C7BBAC;
+    --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
   }
   *{box-sizing:border-box;}
@@ -53,24 +53,52 @@
 
   .hero{
     background:
-      radial-gradient(120% 90% at 15% -10%, rgba(63,169,171,0.35), transparent 60%),
-      radial-gradient(100% 80% at 100% 0%, rgba(232,120,92,0.22), transparent 55%),
+      linear-gradient(180deg, rgba(30,26,22,0.58), rgba(30,26,22,0.8)),
+      url('assets/hero.jpg') center/cover no-repeat,
       var(--ocean-deep);
     color:#F6F1E7; padding:88px 0 72px; position:relative; overflow:hidden;
   }
   .hero .eyebrow{color:var(--coral-soft);}
   .hero h1{ color:#FBF7EE; font-size:clamp(2.4rem, 5vw, 3.6rem); font-weight:600; margin-top:14px; letter-spacing:-0.01em; }
   .hero .amp{color:var(--coral-soft); font-style:italic;}
-  .hero p.sub{ color:#CFE3E1; font-size:1.05rem; margin-top:16px; max-width:44ch; }
+  .hero p.sub{ color:#E3D8C4; font-size:1.05rem; margin-top:16px; max-width:44ch; }
   .hero-meta{ display:flex; flex-wrap:wrap; gap:28px; margin-top:36px; padding-top:28px; border-top:1px solid rgba(246,241,231,0.18); }
   .hero-meta div{min-width:140px;}
-  .hero-meta .label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#9FC4C2; }
+  .hero-meta .label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#CDBFA8; }
   .hero-meta .value{ font-size:1.02rem; color:#FBF7EE; margin-top:4px; font-weight:500; }
 
   .countdown{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
-  .cd-cell{ background:rgba(246,241,231,0.08); border:1px solid rgba(246,241,231,0.18); border-radius:10px; padding:14px 18px; min-width:78px; text-align:center; }
-  .cd-cell .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.7rem; color:#FBF7EE; font-weight:600; }
-  .cd-cell .unit{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9FC4C2; margin-top:2px; }
+  .cd-cell{
+    background:rgba(246,241,231,0.08); border:1px solid rgba(246,241,231,0.18); border-radius:10px;
+    padding:14px 18px; min-width:78px; text-align:center; position:relative; overflow:hidden;
+    animation: cdGlow 4s ease-in-out infinite;
+  }
+  .cd-cell::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.16) 48%, transparent 66%);
+    transform:translateX(-120%); animation: cdShimmer 5s ease-in-out infinite;
+  }
+  .cd-cell .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.7rem; color:#FBF7EE; font-weight:600; display:inline-block; }
+  .cd-cell .num.tick{ animation: cdTick 0.5s ease; }
+  .cd-cell .unit{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#CDBFA8; margin-top:2px; }
+
+  @keyframes cdShimmer{
+    0%, 15%{ transform:translateX(-120%); }
+    50%{ transform:translateX(120%); }
+    100%{ transform:translateX(120%); }
+  }
+  @keyframes cdGlow{
+    0%, 100%{ box-shadow:0 0 0 rgba(217,194,160,0); }
+    50%{ box-shadow:0 0 16px rgba(217,194,160,0.35); }
+  }
+  @keyframes cdTick{
+    0%{ transform:translateY(-6px) scale(0.92); opacity:0.4; }
+    60%{ transform:translateY(1px) scale(1.05); opacity:1; }
+    100%{ transform:translateY(0) scale(1); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cd-cell, .cd-cell::after, .cd-cell .num.tick{ animation:none; }
+  }
 
   section{padding:56px 0;}
   section + section{border-top:1px solid var(--border);}
@@ -102,12 +130,6 @@
   .source-note{ font-size:0.78rem; color:var(--text-soft); margin-top:14px; }
   .source-note a{color:var(--accent);}
 
-  .cta-box{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:32px; text-align:center; box-shadow:var(--shadow); }
-  .cta-box h3{font-size:1.3rem; margin-bottom:8px;}
-  .cta-box p{color:var(--text-soft); margin:0 0 20px;}
-  .btn{ display:inline-block; background:var(--accent); color:#0B1E24; font-weight:600; text-decoration:none; padding:12px 28px; border-radius:99px; font-size:0.95rem; }
-  .btn:hover{opacity:0.88;}
-
   footer{ padding:36px 0 60px; text-align:center; color:var(--text-soft); font-size:0.85rem; }
   footer .heart{color:var(--accent-2);}
   footer a{color:var(--text-soft);}
@@ -118,17 +140,16 @@
 <div class="hero">
   <div class="wrap">
     <div class="eyebrow">You're invited &middot; Onna, Okinawa</div>
-    <h1>Antzen <span class="amp">&amp;</span> Irene</h1>
-    <p class="sub">Art Grace Ocean Front Garden Chapel &mdash; ceremony at 3:00pm, reception to follow.</p>
+    <h1>Irene <span class="amp">&amp;</span> Antzen</h1>
+    <p class="sub">Ceremony at an oceanfront garden chapel, 3:00pm &mdash; reception to follow.</p>
     <div class="hero-meta">
       <div><div class="label">Date</div><div class="value">Nov 26, 2027</div></div>
-      <div><div class="label">Venue</div><div class="value">Art Grace, Onna</div></div>
-      <div><div class="label">Coordinator</div><div class="value">Miho, Art Grace</div></div>
     </div>
     <div class="countdown" id="countdown">
       <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit">days</div></div>
       <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit">hours</div></div>
       <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit">mins</div></div>
+      <div class="cd-cell"><div class="num" id="cd-secs">&mdash;</div><div class="unit">secs</div></div>
     </div>
   </div>
 </div>
@@ -139,7 +160,7 @@
     <div class="schedule">
       <div class="sched-row">
         <div class="sched-time">3:00 PM</div>
-        <div><h3>Ceremony</h3><p>Ocean Front Garden Chapel, Art Grace. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
+        <div><h3>Ceremony</h3><p>Oceanfront garden chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
       </div>
       <div class="sched-row">
         <div class="sched-time">4:30 &ndash; 6:30 PM</div>
@@ -162,10 +183,10 @@
       <label class="check-item"><input type="checkbox"><span>Light layers for warm days and breezier evenings</span></label>
       <label class="check-item"><input type="checkbox"><span>Sun protection &mdash; hat, sunscreen, sunglasses</span></label>
       <label class="check-item"><input type="checkbox"><span>A compact umbrella or light rain shell</span></label>
-      <label class="check-item"><input type="checkbox"><span>Japanese yen in cash &mdash; many Okinawa spots, including the after-party, are cash-friendly</span></label>
-      <label class="check-item"><input type="checkbox"><span>An outfit change for the after-party</span></label>
+      <label class="check-item"><input type="checkbox"><span>Japan is typically cash-friendly &mdash; keep some yen on hand just in case</span></label>
+      <label class="check-item"><input type="checkbox"><span>A casual outfit change for the izakaya after-party</span></label>
       <label class="check-item"><input type="checkbox"><span>Japan power adapter (Type A/B plugs, 100V)</span></label>
-      <label class="check-item"><input type="checkbox"><span>Your RSVP confirmation, just in case</span></label>
+      <label class="check-item"><input type="checkbox"><span>A rental car is recommended &mdash; makes getting around Okinawa much easier</span></label>
     </div>
   </div>
 </section>
@@ -180,19 +201,9 @@
       <div class="w-stat"><div class="num">68%</div><div class="lbl">Average humidity</div></div>
     </div>
     <div class="weather-note">
-      <strong>Typhoon season is essentially over by late November</strong>, and risk on the day itself is low. If a typhoon ever did threaten the date, Art Grace's policy allows a free reschedule to the next day or the day after &mdash; no charge.
+      <strong>Typhoon season is essentially over by late November</strong>, and risk on the day itself is low. If a typhoon ever did threaten the date, the venue's policy allows a free reschedule to the next day or the day after &mdash; no charge.
     </div>
     <p class="source-note">Climate averages for Onna, Okinawa via <a href="https://en.climate-data.org/asia/japan/okinawa-prefecture/onna-441365/" target="_blank" rel="noopener">climate-data.org</a>.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="cta-box">
-      <h3>Already have your invite?</h3>
-      <p>RSVP and full details are on the wedding site the invitation links to.</p>
-      <a class="btn" href="https://ireneantzenwedding.my.canva.site/irene-antzen-wedding-invitation" target="_blank" rel="noopener">Go to RSVP site</a>
-    </div>
   </div>
 </section>
 
@@ -203,21 +214,34 @@
 <script>
 (function(){
   var target = new Date("2027-11-26T15:00:00+09:00").getTime();
+  var prev = {};
+
+  function setUnit(id, value){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(prev[id] !== undefined && prev[id] !== value){
+      el.classList.remove('tick');
+      void el.offsetWidth;
+      el.classList.add('tick');
+    }
+    el.textContent = value;
+    prev[id] = value;
+  }
+
   function tick(){
     var now = Date.now();
     var diff = Math.max(0, target - now);
     var d = Math.floor(diff / (1000*60*60*24));
     var h = Math.floor((diff / (1000*60*60)) % 24);
     var m = Math.floor((diff / (1000*60)) % 60);
-    var days = document.getElementById('cd-days');
-    var hours = document.getElementById('cd-hours');
-    var mins = document.getElementById('cd-mins');
-    if(days) days.textContent = d;
-    if(hours) hours.textContent = h;
-    if(mins) mins.textContent = m;
+    var s = Math.floor((diff / 1000) % 60);
+    setUnit('cd-days', d);
+    setUnit('cd-hours', h);
+    setUnit('cd-mins', m);
+    setUnit('cd-secs', s);
   }
   tick();
-  setInterval(tick, 30000);
+  setInterval(tick, 1000);
 })();
 </script>
 </body>
