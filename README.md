@@ -1,8 +1,8 @@
-# Antzen & Irene — Okinawa Wedding Site
+# Irene & Antzen — Wedding Site
 
 Two pages:
 
-- **`index.html`** — public guest page. Schedule, packing checklist, weather, RSVP link. Safe for anyone to see.
+- **`index.html`** — public guest page. Schedule, packing checklist, weather. Safe for anyone to see.
 - **`planner.html`** — private planning dashboard (budget, guest tracking, vendor decisions) for the two of you and your coordinators. Content is AES-encrypted inside the file itself and only decrypts in the browser with the right password.
 
 ## Important: what the password protection actually does
@@ -66,4 +66,4 @@ git push
 
 ## Linking the two pages
 
-`index.html` doesn't link to `planner.html` anywhere, on purpose — it's not indexed or advertised, just reachable if you know the URL. Bookmark `https://achuyo.github.io/irene-antzen-wedding/planner.html` for the two of you.
+`index.html` has a small, low-opacity lock icon fixed in the bottom-right corner that links to `planner.html` — deliberately unobtrusive rather than a visible "planner" button, so it stays easy for the two of you to find without drawing attention for casual visitors. You can also bookmark `https://achuyo.github.io/irene-antzen-wedding/planner.html` directly.

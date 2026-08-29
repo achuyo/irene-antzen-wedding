@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ocean-deep:#3B362E;
-    --reef:#6F8683;
-    --coral:#B98A54;
-    --coral-soft:#D9C2A0;
-    --sand:#F4EEE2;
+    --ocean-deep:#4B5158;
+    --reef:#838C93;
+    --coral:#BFA179;
+    --coral-soft:#E4D3B8;
+    --sand:#F1ECE3;
     --foam:#FFFDF9;
-    --ink:#2A2420;
-    --ink-soft:#6B6259;
-    --line:rgba(42,36,32,0.14);
+    --ink:#3D3A36;
+    --ink-soft:#7C766D;
+    --line:rgba(61,58,54,0.13);
     --bg:var(--sand);
     --surface:var(--foam);
     --text:var(--ink);
@@ -26,18 +26,18 @@
     --accent:var(--reef);
     --accent-2:var(--coral);
     --border:var(--line);
-    --shadow: 0 1px 2px rgba(42,36,32,0.06), 0 8px 24px rgba(42,36,32,0.06);
+    --shadow: 0 1px 2px rgba(61,58,54,0.06), 0 8px 24px rgba(61,58,54,0.06);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#1E1A16; --surface:#2A2520; --text:#F2ECE2; --text-soft:#C7BBAC;
-      --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
+      --bg:#201F1D; --surface:#2B2926; --text:#F0EAE0; --text-soft:#C4BDB2;
+      --accent:#A6ADB3; --accent-2:#D9BD91; --border:rgba(240,234,224,0.12);
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#1E1A16; --surface:#2A2520; --text:#F2ECE2; --text-soft:#C7BBAC;
-    --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
+    --bg:#201F1D; --surface:#2B2926; --text:#F0EAE0; --text-soft:#C4BDB2;
+    --accent:#A6ADB3; --accent-2:#D9BD91; --border:rgba(240,234,224,0.12);
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
   }
   *{box-sizing:border-box;}
@@ -53,7 +53,7 @@
 
   .hero{
     background:
-      linear-gradient(180deg, rgba(30,26,22,0.58), rgba(30,26,22,0.8)),
+      linear-gradient(180deg, rgba(28,29,31,0.58), rgba(28,29,31,0.8)),
       url('assets/hero.jpg') center/cover no-repeat,
       var(--ocean-deep);
     color:#F6F1E7; padding:88px 0 72px; position:relative; overflow:hidden;
@@ -88,8 +88,8 @@
     100%{ transform:translateX(120%); }
   }
   @keyframes cdGlow{
-    0%, 100%{ box-shadow:0 0 0 rgba(217,194,160,0); }
-    50%{ box-shadow:0 0 16px rgba(217,194,160,0.35); }
+    0%, 100%{ box-shadow:0 0 0 rgba(191,161,121,0); }
+    50%{ box-shadow:0 0 16px rgba(191,161,121,0.35); }
   }
   @keyframes cdTick{
     0%{ transform:translateY(-6px) scale(0.92); opacity:0.4; }
@@ -149,7 +149,7 @@
   <div class="wrap">
     <div class="eyebrow">You're invited</div>
     <h1>Irene <span class="amp">&amp;</span> Antzen</h1>
-    <p class="sub">Ceremony at an oceanfront chapel, 3:00pm &mdash; reception to follow.</p>
+    <p class="sub">Ceremony at Oceanfront Chapel, 3:00pm &mdash; reception to follow.</p>
     <div class="hero-meta">
       <div><div class="label">Date</div><div class="value">Nov 26, 2027</div></div>
     </div>
@@ -168,15 +168,15 @@
     <div class="schedule">
       <div class="sched-row">
         <div class="sched-time">3:00 PM</div>
-        <div><h3>Ceremony</h3><p>Oceanfront chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
+        <div><h3>Ceremony</h3><p>Oceanfront Chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
       </div>
       <div class="sched-row">
         <div class="sched-time">4:30 &ndash; 6:30 PM</div>
-        <div><h3>Reception dinner</h3><p>Modern Japanese dinner with free-flow drinks (beer, wine, awamori, whisky, oolong tea, and soft drinks).</p></div>
+        <div><h3>Reception dinner</h3><p>Same hotel as the chapel &mdash; no need to travel between. Modern dinner with free-flow drinks (beer, wine, whisky, oolong tea, and soft drinks).</p></div>
       </div>
       <div class="sched-row">
         <div class="sched-time">Evening</div>
-        <div><h3>Izakaya after-party <span class="tbd-tag">venue tbd</span></h3><p>A relaxed second stop nearby &mdash; details to follow closer to the date.</p></div>
+        <div><h3>After-party <span class="tbd-tag">venue tbd</span></h3><p>A relaxed second stop nearby &mdash; details to follow closer to the date.</p></div>
       </div>
     </div>
   </div>
@@ -191,9 +191,9 @@
       <label class="check-item"><input type="checkbox"><span>Light layers for warm days and breezier evenings</span></label>
       <label class="check-item"><input type="checkbox"><span>Sun protection &mdash; hat, sunscreen, sunglasses</span></label>
       <label class="check-item"><input type="checkbox"><span>A compact umbrella or light rain shell</span></label>
-      <label class="check-item"><input type="checkbox"><span>Japan is typically cash-friendly &mdash; keep some yen on hand just in case</span></label>
-      <label class="check-item"><input type="checkbox"><span>A casual outfit change for the izakaya after-party</span></label>
-      <label class="check-item"><input type="checkbox"><span>Japan power adapter (Type A/B plugs, 100V)</span></label>
+      <label class="check-item"><input type="checkbox"><span>Cash is often useful &mdash; keep some local currency on hand just in case</span></label>
+      <label class="check-item"><input type="checkbox"><span>A casual outfit change for the after-party</span></label>
+      <label class="check-item"><input type="checkbox"><span>Power adapter for local outlets</span></label>
       <label class="check-item"><input type="checkbox"><span>A rental car is recommended &mdash; makes getting around much easier</span></label>
     </div>
   </div>
