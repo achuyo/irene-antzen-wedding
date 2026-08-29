@@ -10,28 +10,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ocean-deep:#123B4A; --reef:#2F8F91; --coral:#E8785C;
-    --sand:#F4EEE2; --foam:#FFFDF9; --ink:#16262B; --ink-soft:#516468;
-    --line:rgba(18,59,74,0.13);
-    --bg:var(--sand); --surface:var(--foam); --surface-2:#EEE6D6;
+    --ocean-deep:#3B362E; --reef:#6F8683; --coral:#B98A54;
+    --sand:#F4EEE2; --foam:#FFFDF9; --ink:#2A2420; --ink-soft:#6B6259;
+    --line:rgba(42,36,32,0.13);
+    --bg:var(--sand); --surface:var(--foam); --surface-2:#EDE4D3;
     --text:var(--ink); --text-soft:var(--ink-soft);
     --accent:var(--reef); --accent-2:var(--coral); --border:var(--line);
-    --shadow:0 1px 2px rgba(18,59,74,0.06), 0 8px 20px rgba(18,59,74,0.06);
+    --shadow:0 1px 2px rgba(42,36,32,0.06), 0 8px 20px rgba(42,36,32,0.06);
     --ok-bg:#DCEFE1; --ok-fg:#1F6B3C;
     --pend-bg:#FBE7D8; --pend-fg:#A85A22;
     --prog-bg:#E1EAF5; --prog-fg:#2C548C;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0B1E24; --surface:#122E36; --surface-2:#16363F; --text:#EEF3F1; --text-soft:#9FB8BA;
-      --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+      --bg:#1E1A16; --surface:#2A2520; --surface-2:#302B24; --text:#F2ECE2; --text-soft:#C7BBAC;
+      --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
       --shadow:0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
       --ok-bg:#173625; --ok-fg:#7FD8A0; --pend-bg:#3B2A19; --pend-fg:#F0AE73; --prog-bg:#1B2C43; --prog-fg:#9BC0F0;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0B1E24; --surface:#122E36; --surface-2:#16363F; --text:#EEF3F1; --text-soft:#9FB8BA;
-    --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+    --bg:#1E1A16; --surface:#2A2520; --surface-2:#302B24; --text:#F2ECE2; --text-soft:#C7BBAC;
+    --accent:#9DB2AE; --accent-2:#DDB37E; --border:rgba(242,236,226,0.12);
     --shadow:0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
     --ok-bg:#173625; --ok-fg:#7FD8A0; --pend-bg:#3B2A19; --pend-fg:#F0AE73; --prog-bg:#1B2C43; --prog-fg:#9BC0F0;
   }
@@ -43,15 +43,15 @@
   .mono{font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums;}
 
   header{ background:var(--ocean-deep); color:#F6F1E7; padding:40px 0 0; }
-  header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9FC4C2; }
+  header .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#C7B8A0; }
   header h1{ font-size:clamp(1.9rem,4vw,2.6rem); color:#FBF7EE; font-weight:600; margin-top:8px; }
   .stat-row{ display:flex; flex-wrap:wrap; gap:28px; margin-top:26px; padding:24px 0 26px; }
   .stat-row div{min-width:120px;}
-  .stat-row .label{font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9FC4C2; font-family:'IBM Plex Mono',monospace;}
+  .stat-row .label{font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#C7B8A0; font-family:'IBM Plex Mono',monospace;}
   .stat-row .value{font-size:1.15rem; color:#FBF7EE; margin-top:4px; font-weight:600;}
 
   nav{ display:flex; gap:4px; flex-wrap:wrap; background:var(--ocean-deep); padding-bottom:0; }
-  nav button{ font-family:'Work Sans',sans-serif; font-size:0.9rem; font-weight:600; color:#B9D4D2; background:transparent; border:none; padding:12px 18px; cursor:pointer; border-bottom:2px solid transparent; border-radius:8px 8px 0 0; }
+  nav button{ font-family:'Work Sans',sans-serif; font-size:0.9rem; font-weight:600; color:#CDBFA8; background:transparent; border:none; padding:12px 18px; cursor:pointer; border-bottom:2px solid transparent; border-radius:8px 8px 0 0; }
   nav button.active{ color:#FBF7EE; background:var(--bg); border-bottom:2px solid var(--accent-2); }
   nav button:disabled{ opacity:0.4; cursor:not-allowed; }
   nav button:focus-visible{outline:2px solid var(--accent-2);}
@@ -133,12 +133,10 @@
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">Private &middot; Antzen &amp; Irene</div>
+    <div class="eyebrow">Private &middot; Irene &amp; Antzen</div>
     <h1>Okinawa Wedding HQ</h1>
     <div class="stat-row">
       <div><div class="label">Date</div><div class="value">Nov 26, 2027</div></div>
-      <div><div class="label">Venue</div><div class="value">Art Grace, Onna</div></div>
-      <div><div class="label">Coordinator</div><div class="value">Miho</div></div>
     </div>
     <nav id="tabs">
       <button data-panel="overview" class="active" disabled>Overview</button>
