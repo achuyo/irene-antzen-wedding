@@ -50,6 +50,7 @@
   h1,h2,h3{ font-family:'Fraunces', Georgia, 'Times New Roman', serif; text-wrap:balance; color:var(--text); margin:0; }
   .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
   .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+  [hidden]{display:none !important;}
 
   .hero{
     background:
@@ -66,6 +67,11 @@
   .hero-meta div{min-width:140px;}
   .hero-meta .label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#CDBFA8; }
   .hero-meta .value{ font-size:1.02rem; color:#FBF7EE; margin-top:4px; font-weight:500; }
+
+  .lang-toggle{ position:absolute; top:20px; right:20px; display:flex; gap:4px; background:rgba(246,241,231,0.12); border:1px solid rgba(246,241,231,0.25); border-radius:99px; padding:3px; z-index:5; }
+  .lang-toggle button{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.04em; padding:6px 12px; border-radius:99px; border:none; background:transparent; color:#E3D8C4; cursor:pointer; }
+  .lang-toggle button.active{ background:var(--coral); color:#2A2420; }
+  .lang-toggle button:focus-visible{ outline:2px solid #FBF7EE; outline-offset:1px; }
 
   .countdown{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
   .cd-cell{
@@ -151,18 +157,32 @@
 <body>
 
 <div class="hero">
+  <div class="lang-toggle" id="langToggle">
+    <button type="button" data-lang="en" class="active">EN</button>
+    <button type="button" data-lang="zh">繁體中文</button>
+  </div>
   <div class="wrap">
-    <div class="eyebrow">You're invited</div>
+    <div class="eyebrow">
+      <span class="i18n-en">You're invited</span><span class="i18n-zh" hidden>誠摯邀請您</span>
+    </div>
     <h1>Irene <span class="amp">&amp;</span> Antzen</h1>
-    <p class="sub">Ceremony at Oceanfront Chapel, 3:00pm &mdash; reception to follow.</p>
+    <p class="sub">
+      <span class="i18n-en">Ceremony at Oceanfront Chapel, 3:00pm &mdash; reception to follow.</span>
+      <span class="i18n-zh" hidden>婚禮於海景教堂舉行，下午3:00開始，其後設有婚宴晚會。</span>
+    </p>
     <div class="hero-meta">
-      <div><div class="label">Date</div><div class="value">Nov 26, 2027</div></div>
+      <div>
+        <div class="label"><span class="i18n-en">Date</span><span class="i18n-zh" hidden>日期</span></div>
+        <div class="value">
+          <span class="i18n-en">Nov 26, 2027</span><span class="i18n-zh" hidden>2027年11月26日</span>
+        </div>
+      </div>
     </div>
     <div class="countdown" id="countdown">
-      <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit">days</div></div>
-      <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit">hours</div></div>
-      <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit">mins</div></div>
-      <div class="cd-cell"><div class="num" id="cd-secs">&mdash;</div><div class="unit">secs</div></div>
+      <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit"><span class="i18n-en">days</span><span class="i18n-zh" hidden>天</span></div></div>
+      <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit"><span class="i18n-en">hours</span><span class="i18n-zh" hidden>小時</span></div></div>
+      <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit"><span class="i18n-en">mins</span><span class="i18n-zh" hidden>分鐘</span></div></div>
+      <div class="cd-cell"><div class="num" id="cd-secs">&mdash;</div><div class="unit"><span class="i18n-en">secs</span><span class="i18n-zh" hidden>秒</span></div></div>
     </div>
   </div>
 </div>
@@ -170,25 +190,52 @@
 <div class="rsvp-note">
   <div class="wrap">
     <div class="eyebrow">RSVP</div>
-    <p>RSVP details are being sent directly to each guest given limited seating &mdash; keep an eye on your inbox.</p>
+    <p>
+      <span class="i18n-en">RSVP details are being sent directly to each guest given limited seating &mdash; keep an eye on your inbox.</span>
+      <span class="i18n-zh" hidden>由於座位有限，回覆邀請的詳情將直接發送至各位嘉賓，請留意您的電子郵箱。</span>
+    </p>
   </div>
 </div>
 
 <section>
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">The Day</div><h2>Schedule</h2></div>
+    <div class="section-head">
+      <div class="eyebrow"><span class="i18n-en">The Day</span><span class="i18n-zh" hidden>婚禮流程</span></div>
+      <h2><span class="i18n-en">Schedule</span><span class="i18n-zh" hidden>時間表</span></h2>
+    </div>
     <div class="schedule">
       <div class="sched-row">
         <div class="sched-time">3:00 PM</div>
-        <div><h3>Ceremony</h3><p>Oceanfront Chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
+        <div>
+          <h3><span class="i18n-en">Ceremony</span><span class="i18n-zh" hidden>婚禮儀式</span></h3>
+          <p>
+            <span class="i18n-en">Oceanfront Chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</span>
+            <span class="i18n-zh" hidden>海景教堂。戶外座位設於草地及石地上，請參閱以下鞋履建議。</span>
+          </p>
+        </div>
       </div>
       <div class="sched-row">
         <div class="sched-time">4:30 &ndash; 6:30 PM</div>
-        <div><h3>Reception dinner</h3><p>Same hotel as the chapel &mdash; no need to travel between. Modern dinner with free-flow drinks (beer, wine, whisky, oolong tea, and soft drinks).</p></div>
+        <div>
+          <h3><span class="i18n-en">Reception dinner</span><span class="i18n-zh" hidden>婚宴晚膳</span></h3>
+          <p>
+            <span class="i18n-en">Same hotel as the chapel &mdash; no need to travel between. Modern dinner with free-flow drinks (beer, wine, whisky, oolong tea, and soft drinks).</span>
+            <span class="i18n-zh" hidden>與教堂同一酒店，無需往返奔波。提供現代晚宴及無限暢飲（啤酒、紅酒、威士忌、烏龍茶及軟飲料）。</span>
+          </p>
+        </div>
       </div>
       <div class="sched-row">
-        <div class="sched-time">Evening</div>
-        <div><h3>After-party <span class="tbd-tag">venue tbd</span></h3><p>A relaxed second stop nearby &mdash; details to follow closer to the date.</p></div>
+        <div class="sched-time"><span class="i18n-en">Evening</span><span class="i18n-zh" hidden>晚上</span></div>
+        <div>
+          <h3>
+            <span class="i18n-en">After-party</span><span class="i18n-zh" hidden>派對續攤</span>
+            <span class="tbd-tag"><span class="i18n-en">venue tbd</span><span class="i18n-zh" hidden>地點待定</span></span>
+          </h3>
+          <p>
+            <span class="i18n-en">A relaxed second stop nearby &mdash; details to follow closer to the date.</span>
+            <span class="i18n-zh" hidden>附近的輕鬆聚會地點，詳情將於婚禮日期臨近時公佈。</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -196,57 +243,104 @@
 
 <section>
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">Getting There</div><h2>Travel logistics</h2></div>
-    <p style="color:var(--text-soft); font-size:0.95rem;">Fly in, then plan on a rental car, taxi, or bus to reach the venue &mdash; there's no shuttle service. A rental car is the easier option overall, since it lets you move around freely once you're here rather than relying on taxis or bus schedules for every trip.</p>
+    <div class="section-head">
+      <div class="eyebrow"><span class="i18n-en">Getting There</span><span class="i18n-zh" hidden>交通指南</span></div>
+      <h2><span class="i18n-en">Travel logistics</span><span class="i18n-zh" hidden>交通安排</span></h2>
+    </div>
+    <p style="color:var(--text-soft); font-size:0.95rem;">
+      <span class="i18n-en">Fly in, then plan on a rental car, taxi, or bus to reach the venue &mdash; there's no shuttle service. A rental car is the easier option overall, since it lets you move around freely once you're here rather than relying on taxis or bus schedules for every trip.</span>
+      <span class="i18n-zh" hidden>抵埗後，建議租車、乘搭的士或巴士前往場地——現場並無接駁巴士服務。租車會是較輕鬆的選擇，讓您在當地能自由活動，毋須每次都依賴的士或巴士時間表。</span>
+    </p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">Before You Pack</div><h2>What to bring</h2></div>
+    <div class="section-head">
+      <div class="eyebrow"><span class="i18n-en">Before You Pack</span><span class="i18n-zh" hidden>行李清單</span></div>
+      <h2><span class="i18n-en">What to bring</span><span class="i18n-zh" hidden>隨身物品</span></h2>
+    </div>
     <div class="checklist" id="checklist">
-      <label class="check-item"><input type="checkbox"><span>Passport (valid 6+ months from travel date)</span></label>
-      <label class="check-item"><input type="checkbox"><span>Driver's license and an International Driving Permit (IDP), if renting a car</span></label>
-      <label class="check-item"><input type="checkbox"><span>Comfortable outdoor shoes &mdash; the chapel lawn is grass and stone, not ideal for heels</span></label>
-      <label class="check-item"><input type="checkbox"><span>Light layers for warm days and breezier evenings</span></label>
-      <label class="check-item"><input type="checkbox"><span>Sun protection &mdash; hat, sunscreen, sunglasses</span></label>
-      <label class="check-item"><input type="checkbox"><span>A compact umbrella or light rain shell</span></label>
-      <label class="check-item"><input type="checkbox"><span>Cash is often useful &mdash; keep some local currency on hand just in case</span></label>
-      <label class="check-item"><input type="checkbox"><span>A casual outfit change for the after-party</span></label>
-      <label class="check-item"><input type="checkbox"><span>Power adapter for local outlets</span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Passport (valid 6+ months from travel date)</span>
+        <span class="i18n-zh" hidden>護照（有效期須為出發日起計至少6個月）</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Driver's license and an International Driving Permit (IDP), if renting a car</span>
+        <span class="i18n-zh" hidden>如需租車，請攜帶駕駛執照及國際駕駛執照（IDP）</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Comfortable outdoor shoes &mdash; the chapel lawn is grass and stone, not ideal for heels</span>
+        <span class="i18n-zh" hidden>舒適的戶外鞋——教堂草坪為草地及石地，不適合穿高跟鞋</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Light layers for warm days and breezier evenings</span>
+        <span class="i18n-zh" hidden>輕便衣物，應付溫暖白天及涼爽夜晚</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Sun protection &mdash; hat, sunscreen, sunglasses</span>
+        <span class="i18n-zh" hidden>防曬用品——帽子、防曬霜、太陽眼鏡</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">A compact umbrella or light rain shell</span>
+        <span class="i18n-zh" hidden>輕便雨傘或防雨外套</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Cash is often useful &mdash; keep some local currency on hand just in case</span>
+        <span class="i18n-zh" hidden>建議準備現金——隨身攜帶少量當地貨幣以備不時之需</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">A casual outfit change for the after-party</span>
+        <span class="i18n-zh" hidden>派對續攤的輕便換裝服飾</span>
+      </span></label>
+      <label class="check-item"><input type="checkbox"><span>
+        <span class="i18n-en">Power adapter for local outlets</span>
+        <span class="i18n-zh" hidden>當地電源插座轉換器</span>
+      </span></label>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">Late November</div><h2>Weather to expect</h2></div>
+    <div class="section-head">
+      <div class="eyebrow"><span class="i18n-en">Late November</span><span class="i18n-zh" hidden>十一月下旬</span></div>
+      <h2><span class="i18n-en">Weather to expect</span><span class="i18n-zh" hidden>天氣預告</span></h2>
+    </div>
     <div class="weather-grid">
       <div class="w-stat">
         <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg></div>
-        <div class="num">23&deg;C</div><div class="lbl">Average high (73&deg;F)</div>
+        <div class="num">23&deg;C</div>
+        <div class="lbl"><span class="i18n-en">Average high (73&deg;F)</span><span class="i18n-zh" hidden>平均最高溫度（73&deg;F）</span></div>
       </div>
       <div class="w-stat">
         <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></div>
-        <div class="num">21&deg;C</div><div class="lbl">Average low (70&deg;F)</div>
+        <div class="num">21&deg;C</div>
+        <div class="lbl"><span class="i18n-en">Average low (70&deg;F)</span><span class="i18n-zh" hidden>平均最低溫度（70&deg;F）</span></div>
       </div>
       <div class="w-stat">
         <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15.5a4 4 0 0 1 .5-7.97A5.5 5.5 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 6.98"/><path d="M8 19l-1 2M12 19l-1 2M16 19l-1 2"/></svg></div>
-        <div class="num">8</div><div class="lbl">Rainy days, typical</div>
+        <div class="num">8</div>
+        <div class="lbl"><span class="i18n-en">Rainy days, typical</span><span class="i18n-zh" hidden>平均降雨天數</span></div>
       </div>
       <div class="w-stat">
         <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7.2 6 11.2a6 6 0 0 1-12 0C6 10.2 12 3 12 3Z"/></svg></div>
-        <div class="num">68%</div><div class="lbl">Average humidity</div>
+        <div class="num">68%</div>
+        <div class="lbl"><span class="i18n-en">Average humidity</span><span class="i18n-zh" hidden>平均濕度</span></div>
       </div>
     </div>
     <div class="weather-note">
-      <strong>Typhoon season is essentially over by late November</strong>, and risk on the day itself is low. If a typhoon ever did threaten the date, the venue's policy allows a free reschedule to the next day or the day after &mdash; no charge.
+      <strong><span class="i18n-en">Typhoon season is essentially over by late November</span><span class="i18n-zh" hidden>十一月下旬颱風季節已大致結束</span></strong>
+      <span class="i18n-en">, and risk on the day itself is low. If a typhoon ever did threaten the date, the venue's policy allows a free reschedule to the next day or the day after &mdash; no charge.</span>
+      <span class="i18n-zh" hidden>，當天遇上颱風的機會甚低。若真的遇上颱風影響婚期，場地政策容許免費改期至翌日或後日。</span>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">See you there <span class="heart">&#9825;</span></div>
+  <div class="wrap">
+    <span class="i18n-en">See you there</span><span class="i18n-zh" hidden>屆時見</span> <span class="heart">&#9825;</span>
+  </div>
 </footer>
 
 <a href="planner.html" class="planner-link" aria-label="Planner" title="Planner">&#128274;</a>
@@ -282,6 +376,29 @@
   }
   tick();
   setInterval(tick, 1000);
+})();
+
+(function(){
+  var toggle = document.getElementById('langToggle');
+  if(!toggle) return;
+
+  function setLang(lang){
+    document.querySelectorAll('.i18n-en').forEach(function(el){ el.hidden = (lang === 'zh'); });
+    document.querySelectorAll('.i18n-zh').forEach(function(el){ el.hidden = (lang !== 'zh'); });
+    toggle.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
+    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+    try{ localStorage.setItem('siteLang', lang); }catch(e){}
+  }
+
+  toggle.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-lang]');
+    if(!btn) return;
+    setLang(btn.dataset.lang);
+  });
+
+  var saved = null;
+  try{ saved = localStorage.getItem('siteLang'); }catch(e){}
+  if(saved === 'zh') setLang('zh');
 })();
 </script>
 </body>
