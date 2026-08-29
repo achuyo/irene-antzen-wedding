@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antzen &amp; Irene, Okinawa</title>
+<meta name="description" content="Wedding day details for guests — schedule, what to bring, and weather to expect in Onna, Okinawa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean-deep:#123B4A;
+    --reef:#2F8F91;
+    --coral:#E8785C;
+    --coral-soft:#F2A98F;
+    --sand:#F4EEE2;
+    --foam:#FFFDF9;
+    --ink:#16262B;
+    --ink-soft:#4A5D62;
+    --line:rgba(18,59,74,0.14);
+    --bg:var(--sand);
+    --surface:var(--foam);
+    --text:var(--ink);
+    --text-soft:var(--ink-soft);
+    --accent:var(--reef);
+    --accent-2:var(--coral);
+    --border:var(--line);
+    --shadow: 0 1px 2px rgba(18,59,74,0.06), 0 8px 24px rgba(18,59,74,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1E24; --surface:#122E36; --text:#EEF3F1; --text-soft:#A9C0C2;
+      --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1E24; --surface:#122E36; --text:#EEF3F1; --text-soft:#A9C0C2;
+    --accent:#4FBFC0; --accent-2:#F2946F; --border:rgba(238,243,241,0.12);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Fraunces', Georgia, 'Times New Roman', serif; text-wrap:balance; color:var(--text); margin:0; }
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+
+  .hero{
+    background:
+      radial-gradient(120% 90% at 15% -10%, rgba(63,169,171,0.35), transparent 60%),
+      radial-gradient(100% 80% at 100% 0%, rgba(232,120,92,0.22), transparent 55%),
+      var(--ocean-deep);
+    color:#F6F1E7; padding:88px 0 72px; position:relative; overflow:hidden;
+  }
+  .hero .eyebrow{color:var(--coral-soft);}
+  .hero h1{ color:#FBF7EE; font-size:clamp(2.4rem, 5vw, 3.6rem); font-weight:600; margin-top:14px; letter-spacing:-0.01em; }
+  .hero .amp{color:var(--coral-soft); font-style:italic;}
+  .hero p.sub{ color:#CFE3E1; font-size:1.05rem; margin-top:16px; max-width:44ch; }
+  .hero-meta{ display:flex; flex-wrap:wrap; gap:28px; margin-top:36px; padding-top:28px; border-top:1px solid rgba(246,241,231,0.18); }
+  .hero-meta div{min-width:140px;}
+  .hero-meta .label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#9FC4C2; }
+  .hero-meta .value{ font-size:1.02rem; color:#FBF7EE; margin-top:4px; font-weight:500; }
+
+  .countdown{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .cd-cell{ background:rgba(246,241,231,0.08); border:1px solid rgba(246,241,231,0.18); border-radius:10px; padding:14px 18px; min-width:78px; text-align:center; }
+  .cd-cell .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.7rem; color:#FBF7EE; font-weight:600; }
+  .cd-cell .unit{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9FC4C2; margin-top:2px; }
+
+  section{padding:56px 0;}
+  section + section{border-top:1px solid var(--border);}
+  .section-head{margin-bottom:28px;}
+  .section-head h2{font-size:1.7rem; font-weight:600; margin-top:6px;}
+
+  .schedule{display:flex; flex-direction:column; gap:0;}
+  .sched-row{ display:grid; grid-template-columns:120px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--border); }
+  .sched-row:first-child{border-top:none;}
+  .sched-time{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; color:var(--accent); font-size:0.95rem; padding-top:2px; }
+  .sched-row h3{font-size:1.05rem; font-weight:600;}
+  .sched-row p{margin:4px 0 0; color:var(--text-soft); font-size:0.95rem;}
+  .tbd-tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-2); border:1px solid var(--accent-2); border-radius:99px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
+
+  .checklist{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:10px; margin-top:24px; }
+  .check-item{ display:flex; align-items:flex-start; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow); cursor:pointer; }
+  .check-item input{ appearance:none; -webkit-appearance:none; width:19px; height:19px; flex:0 0 19px; border:1.5px solid var(--text-soft); border-radius:5px; margin-top:1px; position:relative; cursor:pointer; }
+  .check-item input:checked{ background:var(--accent); border-color:var(--accent); }
+  .check-item input:checked::after{ content:""; position:absolute; left:5px; top:1px; width:5px; height:10px; border:solid white; border-width:0 2px 2px 0; transform:rotate(40deg); }
+  .check-item span{font-size:0.95rem;}
+  .check-item:focus-within{outline:2px solid var(--accent); outline-offset:2px;}
+
+  .weather-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-top:24px; }
+  .w-stat{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; box-shadow:var(--shadow); }
+  .w-stat .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.9rem; font-weight:600; color:var(--accent); }
+  .w-stat .lbl{font-size:0.85rem; color:var(--text-soft); margin-top:4px;}
+  .weather-note{ margin-top:20px; padding:16px 18px; background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent-2); border-radius:0 10px 10px 0; font-size:0.92rem; color:var(--text-soft); }
+  .weather-note strong{color:var(--text);}
+  .source-note{ font-size:0.78rem; color:var(--text-soft); margin-top:14px; }
+  .source-note a{color:var(--accent);}
+
+  .cta-box{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:32px; text-align:center; box-shadow:var(--shadow); }
+  .cta-box h3{font-size:1.3rem; margin-bottom:8px;}
+  .cta-box p{color:var(--text-soft); margin:0 0 20px;}
+  .btn{ display:inline-block; background:var(--accent); color:#0B1E24; font-weight:600; text-decoration:none; padding:12px 28px; border-radius:99px; font-size:0.95rem; }
+  .btn:hover{opacity:0.88;}
+
+  footer{ padding:36px 0 60px; text-align:center; color:var(--text-soft); font-size:0.85rem; }
+  footer .heart{color:var(--accent-2);}
+  footer a{color:var(--text-soft);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">You're invited &middot; Onna, Okinawa</div>
+    <h1>Antzen <span class="amp">&amp;</span> Irene</h1>
+    <p class="sub">Art Grace Ocean Front Garden Chapel &mdash; ceremony at 3:00pm, reception to follow.</p>
+    <div class="hero-meta">
+      <div><div class="label">Date</div><div class="value">Nov 26, 2027</div></div>
+      <div><div class="label">Venue</div><div class="value">Art Grace, Onna</div></div>
+      <div><div class="label">Coordinator</div><div class="value">Miho, Art Grace</div></div>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit">days</div></div>
+      <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit">hours</div></div>
+      <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit">mins</div></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">The Day</div><h2>Schedule</h2></div>
+    <div class="schedule">
+      <div class="sched-row">
+        <div class="sched-time">3:00 PM</div>
+        <div><h3>Ceremony</h3><p>Ocean Front Garden Chapel, Art Grace. Outdoor seating on grass and stone &mdash; see the footwear note below.</p></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">4:30 &ndash; 6:30 PM</div>
+        <div><h3>Reception dinner</h3><p>Modern Japanese dinner with free-flow drinks (beer, wine, awamori, whisky, oolong tea, and soft drinks).</p></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">Evening</div>
+        <div><h3>Izakaya after-party <span class="tbd-tag">venue tbd</span></h3><p>A relaxed second stop nearby &mdash; details to follow closer to the date.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Before You Pack</div><h2>What to bring</h2></div>
+    <div class="checklist" id="checklist">
+      <label class="check-item"><input type="checkbox"><span>Passport (valid 6+ months from travel date)</span></label>
+      <label class="check-item"><input type="checkbox"><span>Comfortable outdoor shoes &mdash; the chapel lawn is grass and stone, not ideal for heels</span></label>
+      <label class="check-item"><input type="checkbox"><span>Light layers for warm days and breezier evenings</span></label>
+      <label class="check-item"><input type="checkbox"><span>Sun protection &mdash; hat, sunscreen, sunglasses</span></label>
+      <label class="check-item"><input type="checkbox"><span>A compact umbrella or light rain shell</span></label>
+      <label class="check-item"><input type="checkbox"><span>Japanese yen in cash &mdash; many Okinawa spots, including the after-party, are cash-friendly</span></label>
+      <label class="check-item"><input type="checkbox"><span>An outfit change for the after-party</span></label>
+      <label class="check-item"><input type="checkbox"><span>Japan power adapter (Type A/B plugs, 100V)</span></label>
+      <label class="check-item"><input type="checkbox"><span>Your RSVP confirmation, just in case</span></label>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Late November in Onna</div><h2>Weather to expect</h2></div>
+    <div class="weather-grid">
+      <div class="w-stat"><div class="num">23&deg;C</div><div class="lbl">Average high (73&deg;F)</div></div>
+      <div class="w-stat"><div class="num">21&deg;C</div><div class="lbl">Average low (70&deg;F)</div></div>
+      <div class="w-stat"><div class="num">8</div><div class="lbl">Rainy days, typical</div></div>
+      <div class="w-stat"><div class="num">68%</div><div class="lbl">Average humidity</div></div>
+    </div>
+    <div class="weather-note">
+      <strong>Typhoon season is essentially over by late November</strong>, and risk on the day itself is low. If a typhoon ever did threaten the date, Art Grace's policy allows a free reschedule to the next day or the day after &mdash; no charge.
+    </div>
+    <p class="source-note">Climate averages for Onna, Okinawa via <a href="https://en.climate-data.org/asia/japan/okinawa-prefecture/onna-441365/" target="_blank" rel="noopener">climate-data.org</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>Already have your invite?</h3>
+      <p>RSVP and full details are on the wedding site the invitation links to.</p>
+      <a class="btn" href="https://ireneantzenwedding.my.canva.site/irene-antzen-wedding-invitation" target="_blank" rel="noopener">Go to RSVP site</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">See you in Okinawa <span class="heart">&#9825;</span></div>
+</footer>
+
+<script>
+(function(){
+  var target = new Date("2027-11-26T15:00:00+09:00").getTime();
+  function tick(){
+    var now = Date.now();
+    var diff = Math.max(0, target - now);
+    var d = Math.floor(diff / (1000*60*60*24));
+    var h = Math.floor((diff / (1000*60*60)) % 24);
+    var m = Math.floor((diff / (1000*60)) % 60);
+    var days = document.getElementById('cd-days');
+    var hours = document.getElementById('cd-hours');
+    var mins = document.getElementById('cd-mins');
+    if(days) days.textContent = d;
+    if(hours) hours.textContent = h;
+    if(mins) mins.textContent = m;
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+</script>
+</body>
+</html>
