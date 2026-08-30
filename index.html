@@ -7,7 +7,7 @@
 <meta name="description" content="Wedding day details for guests — schedule, what to bring, and weather to expect.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ocean-deep:#4B5158;
@@ -27,121 +27,182 @@
     --accent-2:var(--coral);
     --border:var(--line);
     --shadow: 0 1px 2px rgba(61,58,54,0.06), 0 8px 24px rgba(61,58,54,0.06);
+    --shadow-lift: 0 4px 10px rgba(61,58,54,0.07), 0 16px 40px rgba(61,58,54,0.09);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --bg:#201F1D; --surface:#2B2926; --text:#F0EAE0; --text-soft:#C4BDB2;
       --accent:#A6ADB3; --accent-2:#D9BD91; --border:rgba(240,234,224,0.12);
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+      --shadow-lift: 0 4px 10px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
     }
   }
   :root[data-theme="dark"]{
     --bg:#201F1D; --surface:#2B2926; --text:#F0EAE0; --text-soft:#C4BDB2;
     --accent:#A6ADB3; --accent-2:#D9BD91; --border:rgba(240,234,224,0.12);
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    --shadow-lift: 0 4px 10px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   html,body{margin:0; padding:0;}
   body{
     background:var(--bg); color:var(--text);
     font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height:1.55; -webkit-font-smoothing:antialiased;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3{ font-family:'Fraunces', Georgia, 'Times New Roman', serif; text-wrap:balance; color:var(--text); margin:0; }
   .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
-  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:currentColor; opacity:0.55; }
   [hidden]{display:none !important;}
 
-  .hero{
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; min-height:min(90vh, 760px); display:flex; align-items:flex-end; overflow:hidden; color:#fff; }
+  .hero::before{ content:""; position:absolute; inset:0; background:url('assets/hero.jpg') center 42%/cover no-repeat; transform:scale(1.02); }
+  .hero::after{
+    content:""; position:absolute; inset:0;
     background:
-      linear-gradient(180deg, rgba(28,29,31,0.58), rgba(28,29,31,0.8)),
-      url('assets/hero.jpg') center/cover no-repeat,
-      var(--ocean-deep);
-    color:#F6F1E7; padding:88px 0 72px; position:relative; overflow:hidden;
+      linear-gradient(180deg, rgba(24,26,28,0.08) 0%, rgba(24,26,28,0.12) 34%, rgba(24,26,28,0.62) 74%, rgba(24,26,28,0.88) 100%),
+      linear-gradient(180deg, rgba(24,26,28,0.28) 0%, transparent 22%);
   }
-  .hero .eyebrow{color:var(--coral-soft);}
-  .hero h1{ color:#FBF7EE; font-size:clamp(2.4rem, 5vw, 3.6rem); font-weight:600; margin-top:14px; letter-spacing:-0.01em; }
-  .hero .amp{color:var(--coral-soft); font-style:italic;}
-  .hero p.sub{ color:#E3D8C4; font-size:1.05rem; margin-top:16px; max-width:44ch; }
-  .hero-meta{ display:flex; flex-wrap:wrap; gap:28px; margin-top:36px; padding-top:28px; border-top:1px solid rgba(246,241,231,0.18); }
+  .hero-inner{ position:relative; z-index:2; width:100%; padding:64px 0 60px; }
+  .hero .eyebrow{ color:var(--coral-soft); }
+  .hero .eyebrow::before{ background:var(--coral-soft); }
+  .hero h1{ color:#FBF7EE; font-size:clamp(2.6rem, 6.4vw, 4.2rem); font-weight:600; margin-top:16px; letter-spacing:-0.01em; line-height:1.05; }
+  .hero .amp{ color:var(--coral-soft); font-style:italic; font-weight:500; padding:0 0.08em; }
+  .hero p.sub{ color:#E9E0D2; font-size:1.08rem; margin-top:18px; max-width:42ch; }
+  .hero-meta{ display:flex; flex-wrap:wrap; gap:30px; margin-top:8px; }
   .hero-meta div{min-width:140px;}
   .hero-meta .label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#CDBFA8; }
   .hero-meta .value{ font-size:1.02rem; color:#FBF7EE; margin-top:4px; font-weight:500; }
 
-  .lang-toggle{ position:absolute; top:20px; right:20px; display:flex; gap:4px; background:rgba(246,241,231,0.12); border:1px solid rgba(246,241,231,0.25); border-radius:99px; padding:3px; z-index:5; }
-  .lang-toggle button{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.04em; padding:6px 12px; border-radius:99px; border:none; background:transparent; color:#E3D8C4; cursor:pointer; }
+  .lang-toggle-wrap{ position:absolute; top:16px; left:16px; right:16px; z-index:6; display:flex; justify-content:flex-end; }
+  .lang-toggle{ display:flex; gap:4px; background:rgba(24,26,28,0.32); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(246,241,231,0.28); border-radius:99px; padding:3px; }
+  .lang-toggle button{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.04em; padding:7px 11px; border-radius:99px; border:none; background:transparent; color:#E9E0D2; cursor:pointer; white-space:nowrap; flex:0 0 auto; }
+  @media (max-width:420px){
+    .lang-toggle-wrap{ top:14px; left:14px; right:14px; }
+    .lang-toggle button{ padding:6px 9px; font-size:10px; }
+  }
   .lang-toggle button.active{ background:var(--coral); color:#2A2420; }
   .lang-toggle button:focus-visible{ outline:2px solid #FBF7EE; outline-offset:1px; }
 
-  .countdown{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
-  .cd-cell{
-    background:rgba(246,241,231,0.08); border:1px solid rgba(246,241,231,0.18); border-radius:10px;
-    padding:14px 18px; min-width:78px; text-align:center; position:relative; overflow:hidden;
-    animation: cdGlow 4s ease-in-out infinite;
+  /* Countdown bar */
+  .countdown{
+    display:inline-flex; margin-top:34px;
+    background:rgba(255,255,255,0.09); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.22); border-radius:16px;
+    box-shadow:0 10px 34px rgba(10,12,14,0.28);
   }
-  .cd-cell::after{
-    content:""; position:absolute; inset:0;
-    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.16) 48%, transparent 66%);
-    transform:translateX(-120%); animation: cdShimmer 5s ease-in-out infinite;
-  }
-  .cd-cell .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.7rem; color:#FBF7EE; font-weight:600; display:inline-block; }
+  .cd-cell{ padding:16px 22px; text-align:center; min-width:72px; position:relative; }
+  .cd-cell + .cd-cell{ border-left:1px solid rgba(255,255,255,0.16); }
+  .cd-cell .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.55rem; color:#FBF7EE; font-weight:600; display:inline-block; line-height:1; }
   .cd-cell .num.tick{ animation: cdTick 0.5s ease; }
-  .cd-cell .unit{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#CDBFA8; margin-top:2px; }
-
-  @keyframes cdShimmer{
-    0%, 15%{ transform:translateX(-120%); }
-    50%{ transform:translateX(120%); }
-    100%{ transform:translateX(120%); }
-  }
-  @keyframes cdGlow{
-    0%, 100%{ box-shadow:0 0 0 rgba(191,161,121,0); }
-    50%{ box-shadow:0 0 16px rgba(191,161,121,0.35); }
-  }
+  .cd-cell .unit{ font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#CDBFA8; margin-top:6px; }
   @keyframes cdTick{
     0%{ transform:translateY(-6px) scale(0.92); opacity:0.4; }
     60%{ transform:translateY(1px) scale(1.05); opacity:1; }
     100%{ transform:translateY(0) scale(1); opacity:1; }
   }
-  @media (prefers-reduced-motion: reduce){
-    .cd-cell, .cd-cell::after, .cd-cell .num.tick{ animation:none; }
+  @media (prefers-reduced-motion: reduce){ .cd-cell .num.tick{ animation:none; } }
+  @media (max-width:420px){
+    .cd-cell{ padding:12px 14px; min-width:0; flex:1; }
+    .cd-cell .num{ font-size:1.25rem; }
   }
 
-  section{padding:56px 0;}
+  .hero-wave{ position:absolute; left:0; right:0; bottom:-1px; line-height:0; z-index:3; pointer-events:none; }
+  .hero-wave svg{ width:100%; height:52px; display:block; }
+
+  /* In-page quick nav */
+  .quicknav{ display:flex; flex-wrap:wrap; gap:8px; padding:22px 0 4px; }
+  .quicknav a{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--text-soft); text-decoration:none; border:1px solid var(--border); border-radius:99px;
+    padding:8px 15px; transition:border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .quicknav a:hover, .quicknav a:focus-visible{ color:var(--text); border-color:var(--accent); background:var(--surface); }
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0;}
+  section.alt{ background:var(--surface); }
   section + section{border-top:1px solid var(--border);}
-  .section-head{margin-bottom:28px;}
-  .section-head h2{font-size:1.7rem; font-weight:600; margin-top:6px;}
+  .section-head{margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.5rem,3.6vw,1.85rem); font-weight:600; margin-top:10px;}
 
-  .schedule{display:flex; flex-direction:column; gap:0;}
-  .sched-row{ display:grid; grid-template-columns:120px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--border); }
-  .sched-row:first-child{border-top:none;}
-  .sched-time{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; color:var(--accent); font-size:0.95rem; padding-top:2px; }
-  .sched-row h3{font-size:1.05rem; font-weight:600;}
-  .sched-row p{margin:4px 0 0; color:var(--text-soft); font-size:0.95rem;}
-  .tbd-tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-2); border:1px solid var(--accent-2); border-radius:99px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
+  /* RSVP callout */
+  .rsvp-note{padding:40px 0 0;}
+  .rsvp-card{
+    margin-top:16px; background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:22px 24px; box-shadow:var(--shadow); display:flex; gap:16px; align-items:flex-start;
+  }
+  .rsvp-card .r-icon{ flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--sand); color:var(--accent); display:flex; align-items:center; justify-content:center; }
+  :root[data-theme="dark"] .rsvp-card .r-icon, @media (prefers-color-scheme:dark){ .rsvp-card .r-icon{ background:var(--bg); } }
+  .rsvp-card .r-icon svg{ width:19px; height:19px; }
+  .rsvp-card p{margin:0; font-size:0.98rem; color:var(--text-soft);}
 
-  .checklist{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:10px; margin-top:24px; }
-  .check-item{ display:flex; align-items:flex-start; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow); cursor:pointer; }
-  .check-item input{ appearance:none; -webkit-appearance:none; width:19px; height:19px; flex:0 0 19px; border:1.5px solid var(--text-soft); border-radius:5px; margin-top:1px; position:relative; cursor:pointer; }
+  /* Timeline */
+  .timeline{ margin-top:6px; }
+  .tl-item{ position:relative; padding:0 0 34px 30px; border-left:1.5px solid var(--border); }
+  .tl-item:last-child{ padding-bottom:0; border-left-color:transparent; }
+  .tl-item::before{ content:""; position:absolute; left:-6.5px; top:3px; width:11px; height:11px; border-radius:50%; background:var(--accent-2); border:2.5px solid var(--bg); box-shadow:0 0 0 1.5px var(--accent-2); }
+  section.alt .tl-item::before{ border-color:var(--surface); }
+  .tl-time{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; color:var(--accent); font-size:0.88rem; letter-spacing:0.03em; margin-bottom:6px; }
+  .tl-item h3{font-size:1.12rem; font-weight:600;}
+  .tl-item p{margin:6px 0 0; color:var(--text-soft); font-size:0.96rem; max-width:52ch;}
+  .tbd-tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-2); border:1px solid var(--accent-2); border-radius:99px; padding:2px 9px; margin-left:9px; vertical-align:middle; }
+
+  /* Travel card */
+  .travel-card{
+    margin-top:4px; background:var(--bg); border:1px solid var(--border); border-radius:16px;
+    padding:26px 26px; box-shadow:var(--shadow); font-size:0.98rem; color:var(--text-soft);
+  }
+  section.alt .travel-card{ background:var(--surface); }
+  .travel-card strong{ color:var(--text); }
+
+  /* Packing checklist */
+  .checklist{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:12px; margin-top:8px; }
+  .check-item{
+    display:flex; align-items:flex-start; gap:14px; background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:16px 17px; box-shadow:var(--shadow); cursor:pointer;
+    transition:box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+  section.alt .check-item{ background:var(--bg); }
+  .check-item:hover{ box-shadow:var(--shadow-lift); transform:translateY(-1px); border-color:var(--accent); }
+  .chk-icon{ flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:var(--sand); color:var(--accent); display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  :root[data-theme="dark"] .chk-icon{ background:var(--bg); }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .chk-icon{ background:var(--bg); } }
+  .chk-icon svg{ width:16px; height:16px; }
+  .chk-body{ display:flex; align-items:flex-start; gap:10px; flex:1 1 auto; min-width:0; }
+  .check-item input{ appearance:none; -webkit-appearance:none; width:18px; height:18px; flex:0 0 18px; border:1.5px solid var(--text-soft); border-radius:5px; margin-top:2px; position:relative; cursor:pointer; }
   .check-item input:checked{ background:var(--accent); border-color:var(--accent); }
   .check-item input:checked::after{ content:""; position:absolute; left:5px; top:1px; width:5px; height:10px; border:solid white; border-width:0 2px 2px 0; transform:rotate(40deg); }
-  .check-item span{font-size:0.95rem;}
+  .check-item span{font-size:0.94rem; line-height:1.45;}
   .check-item:focus-within{outline:2px solid var(--accent); outline-offset:2px;}
 
-  .weather-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-top:24px; }
-  .w-stat{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; box-shadow:var(--shadow); }
-  .w-stat .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.9rem; font-weight:600; color:var(--accent); }
+  /* Weather */
+  .weather-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-top:8px; }
+  .w-stat{ background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:22px 20px; box-shadow:var(--shadow); }
+  section.alt .w-stat{ background:var(--surface); }
+  .w-icon{ width:38px; height:38px; margin:0 0 12px; border-radius:50%; background:var(--sand); color:var(--accent); display:flex; align-items:center; justify-content:center; }
+  :root[data-theme="dark"] .w-icon{ background:var(--bg); }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .w-icon{ background:var(--bg); } }
+  .w-icon svg{ width:19px; height:19px; display:block; }
+  .w-stat .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; font-size:1.85rem; font-weight:600; color:var(--text); }
   .w-stat .lbl{font-size:0.85rem; color:var(--text-soft); margin-top:4px;}
-  .weather-note{ margin-top:20px; padding:16px 18px; background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent-2); border-radius:0 10px 10px 0; font-size:0.92rem; color:var(--text-soft); }
+  .weather-note{ margin-top:22px; padding:18px 20px; background:var(--bg); border:1px solid var(--border); border-left:3px solid var(--accent-2); border-radius:0 12px 12px 0; font-size:0.94rem; color:var(--text-soft); }
+  section.alt .weather-note{ background:var(--surface); }
   .weather-note strong{color:var(--text);}
-  .w-icon{ width:26px; height:26px; margin:0 auto 8px; color:var(--accent); }
-  .w-icon svg{ width:100%; height:100%; display:block; }
 
-  .rsvp-note{padding:36px 0 0;}
-  .rsvp-note p{margin-top:8px; font-size:1rem; color:var(--text-soft);}
-
-  footer{ padding:36px 0 60px; text-align:center; color:var(--text-soft); font-size:0.85rem; }
+  /* Footer */
+  footer{ padding:52px 0 64px; text-align:center; }
+  footer .fmark{ font-family:'Fraunces', serif; font-style:italic; font-size:1.5rem; color:var(--accent-2); }
+  footer .fnote{ margin-top:10px; color:var(--text-soft); font-size:0.85rem; }
   footer .heart{color:var(--accent-2);}
-  footer a{color:var(--text-soft);}
 
   .planner-link{
     position:fixed; right:20px; bottom:20px; z-index:40;
@@ -149,165 +210,205 @@
     background:var(--ocean-deep); color:#F6F1E7;
     display:flex; align-items:center; justify-content:center;
     font-size:1.15rem; text-decoration:none; box-shadow:var(--shadow);
-    opacity:0.5; transition:opacity 0.2s ease;
+    opacity:0.45; transition:opacity 0.2s ease, transform 0.2s ease;
   }
-  .planner-link:hover, .planner-link:focus-visible{ opacity:1; }
+  .planner-link:hover, .planner-link:focus-visible{ opacity:1; transform:scale(1.05); }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="lang-toggle" id="langToggle">
-    <button type="button" data-lang="en" class="active">EN</button>
-    <button type="button" data-lang="zh">繁體中文</button>
-  </div>
-  <div class="wrap">
-    <div class="eyebrow">
-      <span class="i18n-en">You're invited</span><span class="i18n-zh" hidden>誠摯邀請您</span>
+  <div class="lang-toggle-wrap">
+    <div class="lang-toggle" id="langToggle">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="zh">繁體中文</button>
     </div>
-    <h1>Irene <span class="amp">&amp;</span> Antzen</h1>
-    <p class="sub">
-      <span class="i18n-en">Ceremony at Oceanfront Chapel, 3:00pm &mdash; reception to follow.</span>
-      <span class="i18n-zh" hidden>婚禮於海景教堂舉行，下午3:00開始，其後設有婚宴晚會。</span>
-    </p>
-    <div class="hero-meta">
-      <div>
-        <div class="label"><span class="i18n-en">Date</span><span class="i18n-zh" hidden>日期</span></div>
-        <div class="value">
-          <span class="i18n-en">Nov 26, 2027</span><span class="i18n-zh" hidden>2027年11月26日</span>
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="i18n-en">You're invited</span><span class="i18n-zh" hidden>誠摯邀請您</span>
+      </div>
+      <h1>Irene <span class="amp">&amp;</span> Antzen</h1>
+      <p class="sub">
+        <span class="i18n-en">Ceremony at Oceanfront Chapel, 3:00pm &mdash; reception to follow.</span>
+        <span class="i18n-zh" hidden>婚禮於海景教堂舉行，下午3:00開始，其後設有婚宴晚會。</span>
+      </p>
+      <div class="hero-meta">
+        <div>
+          <div class="label"><span class="i18n-en">Date</span><span class="i18n-zh" hidden>日期</span></div>
+          <div class="value">
+            <span class="i18n-en">Nov 26, 2027</span><span class="i18n-zh" hidden>2027年11月26日</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="countdown" id="countdown">
-      <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit"><span class="i18n-en">days</span><span class="i18n-zh" hidden>天</span></div></div>
-      <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit"><span class="i18n-en">hours</span><span class="i18n-zh" hidden>小時</span></div></div>
-      <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit"><span class="i18n-en">mins</span><span class="i18n-zh" hidden>分鐘</span></div></div>
-      <div class="cd-cell"><div class="num" id="cd-secs">&mdash;</div><div class="unit"><span class="i18n-en">secs</span><span class="i18n-zh" hidden>秒</span></div></div>
+      <div class="countdown" id="countdown">
+        <div class="cd-cell"><div class="num" id="cd-days">&mdash;</div><div class="unit"><span class="i18n-en">days</span><span class="i18n-zh" hidden>天</span></div></div>
+        <div class="cd-cell"><div class="num" id="cd-hours">&mdash;</div><div class="unit"><span class="i18n-en">hours</span><span class="i18n-zh" hidden>小時</span></div></div>
+        <div class="cd-cell"><div class="num" id="cd-mins">&mdash;</div><div class="unit"><span class="i18n-en">mins</span><span class="i18n-zh" hidden>分鐘</span></div></div>
+        <div class="cd-cell"><div class="num" id="cd-secs">&mdash;</div><div class="unit"><span class="i18n-en">secs</span><span class="i18n-zh" hidden>秒</span></div></div>
+      </div>
     </div>
   </div>
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,42 C220,84 380,4 620,26 C860,48 1040,86 1440,32 L1440,80 L0,80 Z" fill="var(--bg)"/></svg>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="quicknav reveal">
+    <a href="#schedule"><span class="i18n-en">Schedule</span><span class="i18n-zh" hidden>時間表</span></a>
+    <a href="#travel"><span class="i18n-en">Travel</span><span class="i18n-zh" hidden>交通</span></a>
+    <a href="#packing"><span class="i18n-en">Packing</span><span class="i18n-zh" hidden>行李</span></a>
+    <a href="#weather"><span class="i18n-en">Weather</span><span class="i18n-zh" hidden>天氣</span></a>
+  </nav>
 </div>
 
 <div class="rsvp-note">
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="eyebrow">RSVP</div>
-    <p>
-      <span class="i18n-en">RSVP details are being sent directly to each guest given limited seating &mdash; keep an eye on your inbox.</span>
-      <span class="i18n-zh" hidden>由於座位有限，回覆邀請的詳情將直接發送至各位嘉賓，請留意您的電子郵箱。</span>
-    </p>
+    <div class="rsvp-card">
+      <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 12 13l9-6.5"/><rect x="3" y="5" width="18" height="14" rx="2.2"/></svg></div>
+      <p>
+        <span class="i18n-en">RSVP details are being sent directly to each guest given limited seating &mdash; keep an eye on your inbox.</span>
+        <span class="i18n-zh" hidden>由於座位有限，回覆邀請的詳情將直接發送至各位嘉賓，請留意您的電子郵箱。</span>
+      </p>
+    </div>
   </div>
 </div>
 
-<section>
+<section id="schedule">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="i18n-en">The Day</span><span class="i18n-zh" hidden>婚禮流程</span></div>
       <h2><span class="i18n-en">Schedule</span><span class="i18n-zh" hidden>時間表</span></h2>
     </div>
-    <div class="schedule">
-      <div class="sched-row">
-        <div class="sched-time">3:00 PM</div>
-        <div>
-          <h3><span class="i18n-en">Ceremony</span><span class="i18n-zh" hidden>婚禮儀式</span></h3>
-          <p>
-            <span class="i18n-en">Oceanfront Chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</span>
-            <span class="i18n-zh" hidden>海景教堂。戶外座位設於草地及石地上，請參閱以下鞋履建議。</span>
-          </p>
-        </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-time">3:00 PM</div>
+        <h3><span class="i18n-en">Ceremony</span><span class="i18n-zh" hidden>婚禮儀式</span></h3>
+        <p>
+          <span class="i18n-en">Oceanfront Chapel. Outdoor seating on grass and stone &mdash; see the footwear note below.</span>
+          <span class="i18n-zh" hidden>海景教堂。戶外座位設於草地及石地上，請參閱以下鞋履建議。</span>
+        </p>
       </div>
-      <div class="sched-row">
-        <div class="sched-time">4:30 &ndash; 6:30 PM</div>
-        <div>
-          <h3><span class="i18n-en">Reception dinner</span><span class="i18n-zh" hidden>婚宴晚膳</span></h3>
-          <p>
-            <span class="i18n-en">Same hotel as the chapel &mdash; no need to travel between. Modern dinner with free-flow drinks (beer, wine, whisky, oolong tea, and soft drinks).</span>
-            <span class="i18n-zh" hidden>與教堂同一酒店，無需往返奔波。提供現代晚宴及無限暢飲（啤酒、葡萄酒、威士忌、烏龍茶及軟飲料）。</span>
-          </p>
-        </div>
+      <div class="tl-item">
+        <div class="tl-time">4:30 &ndash; 6:30 PM</div>
+        <h3><span class="i18n-en">Reception dinner</span><span class="i18n-zh" hidden>婚宴晚膳</span></h3>
+        <p>
+          <span class="i18n-en">Same hotel as the chapel &mdash; no need to travel between. Modern dinner with free-flow drinks (beer, wine, whisky, oolong tea, and soft drinks).</span>
+          <span class="i18n-zh" hidden>與教堂同一酒店，無需往返奔波。提供現代晚宴及無限暢飲（啤酒、葡萄酒、威士忌、烏龍茶及軟飲料）。</span>
+        </p>
       </div>
-      <div class="sched-row">
-        <div class="sched-time"><span class="i18n-en">Evening</span><span class="i18n-zh" hidden>晚上</span></div>
-        <div>
-          <h3>
-            <span class="i18n-en">After-party</span><span class="i18n-zh" hidden>派對續攤</span>
-            <span class="tbd-tag"><span class="i18n-en">venue tbd</span><span class="i18n-zh" hidden>地點待定</span></span>
-          </h3>
-          <p>
-            <span class="i18n-en">A relaxed second stop nearby &mdash; details to follow closer to the date.</span>
-            <span class="i18n-zh" hidden>附近的輕鬆聚會地點，詳情將於婚禮日期臨近時公佈。</span>
-          </p>
-        </div>
+      <div class="tl-item">
+        <div class="tl-time"><span class="i18n-en">Evening</span><span class="i18n-zh" hidden>晚上</span></div>
+        <h3>
+          <span class="i18n-en">After-party</span><span class="i18n-zh" hidden>派對續攤</span>
+          <span class="tbd-tag"><span class="i18n-en">venue tbd</span><span class="i18n-zh" hidden>地點待定</span></span>
+        </h3>
+        <p>
+          <span class="i18n-en">A relaxed second stop nearby &mdash; details to follow closer to the date.</span>
+          <span class="i18n-zh" hidden>附近的輕鬆聚會地點，詳情將於婚禮日期臨近時公佈。</span>
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="travel" class="alt">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="i18n-en">Getting There</span><span class="i18n-zh" hidden>交通指南</span></div>
       <h2><span class="i18n-en">Travel logistics</span><span class="i18n-zh" hidden>交通安排</span></h2>
     </div>
-    <p style="color:var(--text-soft); font-size:0.95rem;">
+    <div class="travel-card reveal">
       <span class="i18n-en">Fly in, then plan on a rental car, taxi, or bus to reach the venue &mdash; there's no shuttle service. A rental car is the easier option overall, since it lets you move around freely once you're here rather than relying on taxis or bus schedules for every trip.</span>
       <span class="i18n-zh" hidden>抵埗後，建議租車、乘搭的士或巴士前往場地——現場並無接駁巴士服務。租車會是較輕鬆的選擇，讓您在當地能自由活動，毋須每次都依賴的士或巴士時間表。</span>
-    </p>
+    </div>
   </div>
 </section>
 
-<section>
+<section id="packing">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="i18n-en">Before You Pack</span><span class="i18n-zh" hidden>行李清單</span></div>
       <h2><span class="i18n-en">What to bring</span><span class="i18n-zh" hidden>隨身物品</span></h2>
     </div>
-    <div class="checklist" id="checklist">
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Passport (valid 6+ months from travel date)</span>
-        <span class="i18n-zh" hidden>護照（有效期須為出發日起計至少6個月）</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Driver's license and an International Driving Permit (IDP), if renting a car</span>
-        <span class="i18n-zh" hidden>如需租車，請攜帶駕駛執照及國際駕駛執照（IDP）</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Comfortable outdoor shoes &mdash; the chapel lawn is grass and stone, not ideal for heels</span>
-        <span class="i18n-zh" hidden>舒適的戶外鞋——教堂草坪為草地及石地，不適合穿高跟鞋</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Light layers for warm days and breezier evenings</span>
-        <span class="i18n-zh" hidden>輕便衣物，應付溫暖白天及涼爽夜晚</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Sun protection &mdash; hat, sunscreen, sunglasses</span>
-        <span class="i18n-zh" hidden>防曬用品——帽子、防曬霜、太陽眼鏡</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">A compact umbrella or light rain shell</span>
-        <span class="i18n-zh" hidden>輕便雨傘或防雨外套</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Cash is often useful &mdash; keep some local currency on hand just in case</span>
-        <span class="i18n-zh" hidden>建議準備現金——隨身攜帶少量當地貨幣以備不時之需</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">A casual outfit change for the after-party</span>
-        <span class="i18n-zh" hidden>派對續攤的輕便換裝服飾</span>
-      </span></label>
-      <label class="check-item"><input type="checkbox"><span>
-        <span class="i18n-en">Power adapter for local outlets</span>
-        <span class="i18n-zh" hidden>當地電源插座轉換器</span>
-      </span></label>
+    <div class="checklist reveal" id="checklist">
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3" width="13" height="18" rx="2"/><circle cx="12" cy="9.5" r="2.1"/><path d="M9 15.5h6M9.8 18h4.4"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Passport (valid 6+ months from travel date)</span>
+          <span class="i18n-zh" hidden>護照（有效期須為出發日起計至少6個月）</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="7.8" cy="12" r="2"/><path d="M13 10.5h5M13 13.5h3.5"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Driver's license and an International Driving Permit (IDP), if renting a car</span>
+          <span class="i18n-zh" hidden>如需租車，請攜帶駕駛執照及國際駕駛執照（IDP）</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17c.3-2.2 1.8-3 3.3-3.6 1.6-.6 2.3-1.5 2.7-2.7.3-1 1.2-1.6 2.1-1.3 1.4 2.8 3.3 4.6 6.2 5.4.8.2 1.2.9 1.2 1.7V18h-15.5v-1Z"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Comfortable outdoor shoes &mdash; the chapel lawn is grass and stone, not ideal for heels</span>
+          <span class="i18n-zh" hidden>舒適的戶外鞋——教堂草坪為草地及石地，不適合穿高跟鞋</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Light layers for warm days and breezier evenings</span>
+          <span class="i18n-zh" hidden>輕便衣物，應付溫暖白天及涼爽夜晚</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Sun protection &mdash; hat, sunscreen, sunglasses</span>
+          <span class="i18n-zh" hidden>防曬用品——帽子、防曬霜、太陽眼鏡</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9Z"/><path d="M12 3v1.2"/><path d="M12 12v6.5a2 2 0 0 1-3.6 1.2"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">A compact umbrella or light rain shell</span>
+          <span class="i18n-zh" hidden>輕便雨傘或防雨外套</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M5.5 6.5v11M18.5 6.5v11"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Cash is often useful &mdash; keep some local currency on hand just in case</span>
+          <span class="i18n-zh" hidden>建議準備現金——隨身攜帶少量當地貨幣以備不時之需</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a1.7 1.7 0 1 0 1.7 1.7"/><path d="M12 5.5 3.5 11h17L12 5.5Z"/><path d="M3.5 15.5h17"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">A casual outfit change for the after-party</span>
+          <span class="i18n-zh" hidden>派對續攤的輕便換裝服飾</span>
+        </span></div>
+      </label>
+      <label class="check-item">
+        <div class="chk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v4M15 3v4"/><path d="M6.5 7h11v4.5a5.5 5.5 0 0 1-11 0V7Z"/><path d="M12 16.5V21"/></svg></div>
+        <div class="chk-body"><input type="checkbox"><span>
+          <span class="i18n-en">Power adapter for local outlets</span>
+          <span class="i18n-zh" hidden>當地電源插座轉換器</span>
+        </span></div>
+      </label>
     </div>
   </div>
 </section>
 
-<section>
+<section id="weather" class="alt">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="i18n-en">Late November</span><span class="i18n-zh" hidden>十一月下旬</span></div>
       <h2><span class="i18n-en">Weather to expect</span><span class="i18n-zh" hidden>天氣概況</span></h2>
     </div>
-    <div class="weather-grid">
+    <div class="weather-grid reveal">
       <div class="w-stat">
         <div class="w-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg></div>
         <div class="num">23&deg;C</div>
@@ -329,7 +430,7 @@
         <div class="lbl"><span class="i18n-en">Average humidity</span><span class="i18n-zh" hidden>平均濕度</span></div>
       </div>
     </div>
-    <div class="weather-note">
+    <div class="weather-note reveal">
       <strong><span class="i18n-en">Typhoon season is essentially over by late November</span><span class="i18n-zh" hidden>十一月下旬颱風季節已大致結束</span></strong>
       <span class="i18n-en">, and risk on the day itself is low. If a typhoon ever did threaten the date, the venue's policy allows a free reschedule to the next day or the day after &mdash; no charge.</span>
       <span class="i18n-zh" hidden>，當天遇上颱風的機會甚低。若真的遇上颱風影響婚期，場地政策容許免費順延一至兩天。</span>
@@ -339,7 +440,8 @@
 
 <footer>
   <div class="wrap">
-    <span class="i18n-en">See you there</span><span class="i18n-zh" hidden>屆時見</span> <span class="heart">&#9825;</span>
+    <div class="fmark">I &amp; A</div>
+    <div class="fnote"><span class="i18n-en">See you there</span><span class="i18n-zh" hidden>屆時見</span> <span class="heart">&#9825;</span></div>
   </div>
 </footer>
 
@@ -399,6 +501,25 @@
   var saved = null;
   try{ saved = localStorage.getItem('siteLang'); }catch(e){}
   if(saved === 'zh') setLang('zh');
+})();
+
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced || !('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('in-view'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){ observer.observe(el); });
 })();
 </script>
 </body>
